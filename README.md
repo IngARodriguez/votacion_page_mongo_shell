@@ -45,9 +45,9 @@ node server.js
 
 ---
 
-## Configuracion sencilla en
+## Configuracion de nodos de replicidad en
 ```bash
-git clone https://github.com/IngARodriguez/mongo-replica-rs0
+https://github.com/IngARodriguez/mongo-replica-rs0
 ```
 
 ## Modo Replica Set Local (rs0)
