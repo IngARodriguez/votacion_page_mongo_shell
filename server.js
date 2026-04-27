@@ -4,9 +4,20 @@ const app = express();
 app.use(express.json());
 app.use(express.static('.'));
 
-const url = 'mongodb://127.0.0.1:27017,127.0.0.1:27018,127.0.0.1:27019/?replicaSet=rs0';
+// ── Selecciona el modo de conexión ──────────────────────────────
+const MODO = 'atlas'; // 'atlas' | 'replica' | 'local'
+
+const URLS = {
+    atlas:   'mongodb+srv://arodriguez_db_user:WbfDlK5S6OzlReNr@database.ekb6ka9.mongodb.net/?retryWrites=true&w=majority',
+    replica: 'mongodb://127.0.0.1:27017,127.0.0.1:27018,127.0.0.1:27019/?replicaSet=rs0',
+    local:   'mongodb://127.0.0.1:27017',
+};
+
+const url    = URLS[MODO];
 const client = new MongoClient(url);
 const dbName = 'test_db';
+
+console.log(`Modo de conexión: ${MODO.toUpperCase()} → ${url.substring(0, 60)}...`);
 
 const crud = {
     async create(data) {
