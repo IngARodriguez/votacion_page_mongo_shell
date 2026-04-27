@@ -8,7 +8,7 @@ app.use(express.static('.'));
 const MODO = 'atlas'; // 'atlas' | 'replica' | 'local'
 
 const URLS = {
-    atlas:   'mongodb+srv://arodriguez_db_user:WbfDlK5S6OzlReNr@database.ekb6ka9.mongodb.net/?retryWrites=true&w=majority',
+    atlas:   'mongodb://arodriguez_db_user:WbfDlK5S6OzlReNr@ac-1gdtgu0-shard-00-00.ekb6ka9.mongodb.net:27017,ac-1gdtgu0-shard-00-01.ekb6ka9.mongodb.net:27017,ac-1gdtgu0-shard-00-02.ekb6ka9.mongodb.net:27017/?ssl=true&authSource=admin&retryWrites=true&w=majority',
     replica: 'mongodb://127.0.0.1:27017,127.0.0.1:27018,127.0.0.1:27019/?replicaSet=rs0',
     local:   'mongodb://127.0.0.1:27017',
 };
