@@ -45,9 +45,14 @@ node server.js
 
 ---
 
-## Replica Set Local (rs0)
+## Configuracion sencilla en
+```bash
+git clone https://github.com/IngARodriguez/mongo-replica-rs0
+```
 
-### Apagar nodos
+## Modo Replica Set Local (rs0)
+
+### Apagar nodos uno por uno
 
 ```bash
 mongosh --port 27017 --eval "db.adminCommand({shutdown: 1})"
@@ -56,7 +61,7 @@ mongosh --port 27019 --eval "db.adminCommand({shutdown: 1})"
 mongosh --port 27020 --eval "db.adminCommand({shutdown: 1})"
 ```
 
-### Encender nodos
+### Encender nodos uno por uno
 
 ```bash
 mongod --config "C:\data\nodo1\mongod.cfg"
@@ -64,46 +69,6 @@ mongod --config "C:\data\nodo2\mongod.cfg"
 mongod --config "C:\data\nodo3\mongod.cfg"
 mongod --config "C:\data\arb\mongod.cfg"
 ```
-
-### Primer arranque — inicializar el replica set
-
-Solo se hace **una vez**. Luego los nodos se reconectan solos al encender.
-
-```js
-// 1. Conectar al nodo primario
-mongosh --port 27017
-
-// 2. Inicializar con los 3 nodos + árbitro
-rs.initiate({
-  _id: "rs0",
-  members: [
-    { _id: 0, host: "localhost:27017", priority: 10 },
-    { _id: 1, host: "localhost:27018", priority: 1 },
-    { _id: 2, host: "localhost:27019", priority: 1 },
-    { _id: 3, host: "localhost:27020", arbiterOnly: true }
-  ]
-})
-```
-
-### Verificar estado del replica set
-
-```js
-// Conectar a cualquier nodo
-mongosh --port 27017
-
-// Ver estado de todos los miembros
-rs.status().members.forEach(function(m){ print(m.name, m.stateStr) })
-```
-
-Resultado esperado:
-```
-localhost:27017  PRIMARY
-localhost:27018  SECONDARY
-localhost:27019  SECONDARY
-localhost:27020  ARBITER
-```
-
----
 
 ## Estructura del proyecto
 
