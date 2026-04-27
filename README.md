@@ -89,7 +89,7 @@ rs.initiate({
 
 ```js
 // Conectar a cualquier nodo
-mongosh --port 27018
+mongosh --port 27017
 
 // Ver estado de todos los miembros
 rs.status().members.forEach(function(m){ print(m.name, m.stateStr) })
